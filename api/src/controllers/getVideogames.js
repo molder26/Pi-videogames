@@ -17,10 +17,9 @@ exports.getVideogames = async (req, res) => {
                 name: game.name,
                 background_image: game.background_image,
                 genres: game.genres && game.genres.map((g) => g.name).filter(g => g != null).join(', '),
-                rating: game.rating,
-                released: game.released,
-                platforms: game.parent_platforms && game.parent_platforms.map((p) => p.platform.name).filter(p => p != null).join(', '),
-                source: 'Api',
+                // rating: game.rating,
+                // released: game.released,
+                // platforms: game.parent_platforms && game.parent_platforms.map((p) => p.platform.name).filter(p => p != null).join(', '),
             });
         });
     }
