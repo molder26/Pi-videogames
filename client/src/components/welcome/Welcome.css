@@ -1,0 +1,85 @@
+.main_class {
+    display: flex;
+    background-image: url(../../assets/bg_welcome.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.btn_welcome {
+    position: relative;
+    padding: 20px 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(0, 0, 0);
+    margin: 40px;
+    text-decoration: none;
+    transition: 1s;
+    border-radius: 4px;
+    overflow: hidden;
+    -webkit-box-reflect: below 1px linear-gradient(transparent, transparent, #0004);
+}
+
+.btn_welcome:hover {
+    background: #00ccff;
+    box-shadow: 0 0 10px #00ccff,
+        0 0 30px #00ccff,
+        0 0 60px #00ccff,
+        0 0 100px #00ccff;
+}
+
+.btn_welcome:before {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 400%;
+    background: #00ccff;
+    transition: 2s;
+    animation: animate 5s linear infinite;
+    animation-delay: calc(0.33s * 1);
+}
+
+.btn_welcome:hover:before {
+    width: 120%;
+}
+
+@keyframes animate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.btn_welcome:after {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    background: #000000;
+}
+
+.btn_welcome:hover:after {
+    background: #00ccff;
+}
+
+.btn_welcome span {
+    position: relative;
+    z-index: 1;
+    font-size: 2em;
+    color: #fff;
+    opacity: 0.5;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    transition: 0.5s;
+}
+
+.btn_welcome:hover span {
+    opacity: 1;
+}
