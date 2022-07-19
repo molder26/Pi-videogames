@@ -16,13 +16,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgb(0, 0, 0);
-    margin: 40px;
+    background: #000000;
+    margin: 100px 100px;
     text-decoration: none;
     transition: 1s;
     border-radius: 4px;
     overflow: hidden;
     -webkit-box-reflect: below 1px linear-gradient(transparent, transparent, #0004);
+    width: 130px;
 }
 
 .btn_welcome:hover {

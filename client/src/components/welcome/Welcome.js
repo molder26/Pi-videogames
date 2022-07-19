@@ -6,16 +6,9 @@ import "./Welcome.css";
 export default function Welcome() {
     return (
         <div className="main_class">
-            <div>
-                <Link
-                    to="/home"
-                    style={{ textDecoration: "none" }}
-                >
-                    <button className="btn_welcome">
-                        <span>Bienvenido</span>
-                    </button>
-                </Link>
-            </div>
+            <Link className="btn_welcome" role="button" to="/home">
+                <span>Start</span>
+            </Link>
         </div>
     );
 }
