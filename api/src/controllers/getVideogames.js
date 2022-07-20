@@ -13,10 +13,8 @@ exports.getVideogames = async (req, res) => {
                 .get(`${nextUrl}/games?key=${API_KEY}&page=${i}`)
                 .catch((error) => res.status(400).json(error));
     
-            console.log(nextUrl);
             nextUrl = data.next;
-            console.log(data.next);
-    
+            
             const videoGames = data.results.map((game) => {
                 allVideoGames.push( {
                     id: game.id,
@@ -32,6 +30,5 @@ exports.getVideogames = async (req, res) => {
             res.send(error)
         }
     }
-    console.log(allVideoGames.length);
     return res.status(200).send(allVideoGames);
 };
