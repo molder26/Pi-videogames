@@ -19,12 +19,11 @@ export default function Home() {
             {allVideoGames.length > 0 ? <SearchBar /> : <Spinner />}
             <div className="grid">
                 {allVideoGames 
-                    ? allVideoGames.map((game) => (
+                    && allVideoGames.map((game) => (
                         <div className="grid-item" key={game.id}>
                             <Card game={game} />
                         </div>
                     ))
-                    : <Spinner />
                 }
                 <div>Paginador</div>
             </div>
