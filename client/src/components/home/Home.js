@@ -1,7 +1,11 @@
-import React from 'react'
+import React from 'react';
+import SearchBar from '../searchBar/SearchBar';
 
 export default function Home() {
   return (
-    <div>Home</div>
+    <>
+        <SearchBar />
+        <p>Home</p>
+    </>
   )
 }
