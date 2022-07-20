@@ -19,7 +19,7 @@ exports.getVideogames = async (req, res) => {
                 allVideoGames.push( {
                     id: game.id,
                     name: game.name,
-                    background_image: game.background_image,
+                    img: game.background_image,
                     genres: game.genres && game.genres.map((g) => g.name).filter(g => g != null).join(', '),
                     // rating: game.rating,
                     // released: game.released,
@@ -30,5 +30,5 @@ exports.getVideogames = async (req, res) => {
             res.send(error)
         }
     }
-    return res.status(200).send(allVideoGames);
+    return res.status(200).send(allVideoGames.slice(0,15));
 };

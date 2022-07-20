@@ -1,11 +1,31 @@
-import React from 'react';
-import SearchBar from '../searchBar/SearchBar';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getVideoGames } from "../../actions";
+import SearchBar from "../searchBar/SearchBar";
+import Card from "../card/Card";
+import "./Home.css";
 
 export default function Home() {
-  return (
-    <>
-        <SearchBar />
-        <p>Home</p>
-    </>
-  )
+    const dispatch = useDispatch();
+    const { allVideoGames } = useSelector((state) => state);
+
+    useEffect(() => {
+        dispatch(getVideoGames());
+
+    }, []);
+
+    return (
+        <div className="home">
+            <SearchBar />
+            <div className="grid">
+                {allVideoGames &&
+                    allVideoGames.map((game) => (
+                        <div className="grid-item" key={game.id}>
+                            <Card game={game} />
+                        </div>
+                    ))}
+                <div>Paginador</div>
+            </div>
+        </div>
+    );
 }
