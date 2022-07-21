@@ -1,7 +1,8 @@
-import { GET_VIDEOGAMES } from "../actions/index";
+import { GET_VIDEOGAMES, GET_DETAIL_VIDEOGAME, EMPTY_DETAIL_VIDEOGAME } from "../actions/index";
 
 const initialState = {
     allVideoGames: [],
+    detailVideoGame: {},
 };
 
 function rootReducer(state = initialState, action) {
@@ -9,6 +10,18 @@ function rootReducer(state = initialState, action) {
         return {
             ...state,
             allVideoGames: action.payload,
+        };
+    }
+    if (action.type === GET_DETAIL_VIDEOGAME) {
+        return {
+            ...state,
+            detailVideoGame: action.payload,
+        };
+    }
+    if (action.type === EMPTY_DETAIL_VIDEOGAME) {
+        return {
+            ...state,
+            detailVideoGame: {},
         };
     }
 

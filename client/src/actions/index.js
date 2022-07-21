@@ -1,6 +1,8 @@
 import axios from "axios";
 
 export const GET_VIDEOGAMES = "GET_VIDEOGAMES";
+export const GET_DETAIL_VIDEOGAME = "GET_DETAIL_VIDEOGAME";
+export const EMPTY_DETAIL_VIDEOGAME = "EMPTY_DETAIL_VIDEOGAME";
 
 export function getVideoGames() {
     return function (dispatch) {
@@ -14,4 +16,21 @@ export function getVideoGames() {
     };
 }
 
+export function getDetailVideoGame(id) {
+    return function (dispatch) {
+        return axios
+            .get(
+                `http://localhost:3001/videogame/${id}`
+            )
+            .then(({ data }) => {
+                dispatch({ type: GET_DETAIL_VIDEOGAME, payload: data });
+            });
+    };
+}
+
+export function emptyDetailVideoGame() {
+    return function (dispatch) {
+        dispatch({ type: EMPTY_DETAIL_VIDEOGAME });
+    };
+}
 

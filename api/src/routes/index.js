@@ -10,7 +10,7 @@ const router = Router();
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 router.get("/videogames", getVideogames);
-router.get("/videogames/:id", getVideogameById);
+router.get("/videogame/:id", getVideogameById);
 router.get("/genres", getGenres);
 
 module.exports = router;

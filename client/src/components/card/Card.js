@@ -1,18 +1,18 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 import "./Card.css";
 
 export default function Card({ game }) {
     return (
         <div>
-            <img src={game.img} alt={game.name} className="card-img" />
-            <div className="card-content">
-                <h3 className="card-header">{game.name}</h3>
-                <p className="card-text">{game.genres}</p>
-                {/* <button className="card-btn">Ver <span>&rarr;</span></button> */}
-            </div>
+            <Link to={`/detail/${game.id}`} style={{ textDecoration: 'none' }}>
+                <img src={game.img} alt={game.name} className="card-img" />
+                <div className="card-content">
+                    <h3 className="card-header">{game.name}</h3>
+                    <p className="card-text">{game.genres}</p>
+                </div>
+            </Link>
         </div>
     );
 }
-
-//Todo:
-//ubicar el boton al final

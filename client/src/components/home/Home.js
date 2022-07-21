@@ -12,7 +12,7 @@ export default function Home() {
 
     useEffect(() => {
         dispatch(getVideoGames());
-    }, []);
+    }, [dispatch]);
 
     return (
         <div className="home">
