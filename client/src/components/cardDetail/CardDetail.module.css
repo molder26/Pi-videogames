@@ -1,46 +1,46 @@
-.detail-vista {
+.detailVista {
     display: flex;
     flex-direction: row;
 }
 
-.detail-img {
+.detailImg {
     display: block;
     width: 50%;
-    height: 40rem;
+    height: 46rem;
     object-fit: cover;
     margin: 150px 0px 0px 50px;
+    border-radius: 10px;
 }
 
-.detail-content {
-    /* padding: 3rem; */
+.detailContent {
     display: flex;
     flex-direction: column;
-    margin: 140px 0px 0px 70px;
+    margin: 130px 0px 0px 70px;
+    justify-content: space-between;
 }
 
-.detail-titulo {
+.detailTitulo {
     font-size: 2rem;
     font-weight: 300;
     color: #ffffff;
     width: 700px;
 }
 
-.detail-descripcion {
+.detailDescripcion {
     width: 80%;
     color: #ffffff;
     margin: 0px
 }
 
-.detail-generos,
-.detail-generos,
-.detail-plataformas,
-.detail-rating,
-.detail-released
+.detailGeneros,
+.detailPlataformas,
+.detailRating,
+.detailReleased
 {
     color: #ffffff;
 }
 
-.detail-btnBack {
+.detailBtnBack {
     margin: 30px 0px 0px 0px; 
     width: 150px;
     color: #00ccff;
@@ -55,7 +55,7 @@
     transition-duration: 0.5s;
 }
 
-.detail-btnBack:hover {
+.detailBtnBack:hover {
     color: #000000;
     background-color: #00ccff;
     cursor: pointer;

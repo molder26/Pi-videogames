@@ -4,7 +4,8 @@ import { useHistory } from "react-router-dom";
 import { emptyDetailVideoGame, getDetailVideoGame } from "../../actions";
 import Spinner from "../spinner/Spinner";
 
-import "./CardDetail.css";
+import styles from "./CardDetail.module.css";
+// import "./CardDetail.css";
 
 export default function CardDetail(props) {
     const id = props.match.params.id;
@@ -22,27 +23,27 @@ export default function CardDetail(props) {
     return (
         <div>
             {detailVideoGame.name ? (
-                <div className="detail-vista" key={detailVideoGame.id}>
+                <div className={styles.detailVista} key={detailVideoGame.id}>
                     <img
                         src={detailVideoGame.img}
                         alt={detailVideoGame.name}
-                        className="detail-img"
+                        className={styles.detailImg}
                     />
-                    <div className="detail-content">
-                        <h1 className="detail-titulo">
+                    <div className={styles.detailContent}>
+                        <h1 className={styles.detailTitulo}>
                             {detailVideoGame.name}
                         </h1>
                         <h4
-                            className="detail-descripcion"
+                            className={styles.detailDescripcion}
                             dangerouslySetInnerHTML={{
                                 __html: detailVideoGame.description,
                             }}
                         ></h4>
-                        <p className="detail-generos">Genres: {detailVideoGame.genres}</p>
-                        <p className="detail-plataformas">{detailVideoGame.platforms}</p>
-                        <p className="detail-rating">Rating: {detailVideoGame.rating}</p>
-                        <p className="detail-released">Released: {detailVideoGame.released}</p>
-                        <button className="detail-btnBack" onClick={history.goBack}>Back</button>
+                        <p className={styles.detailGeneros}>Genres: {detailVideoGame.genres}</p>
+                        <p className={styles.detailPlataformas}>{detailVideoGame.platforms}</p>
+                        <p className={styles.detailRating}>Rating: {detailVideoGame.rating}</p>
+                        <p className={styles.detailReleased}>Released: {detailVideoGame.released}</p>
+                        <button className={styles.detailBtnBack} onClick={history.goBack}>Back</button>
                     </div>
                 </div>
             ) : (
