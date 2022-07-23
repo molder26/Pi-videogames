@@ -16,6 +16,6 @@ exports.getGenres = async (req, res) => {
         const genresDB = await Genre.findAll();
         res.status(200).json(genresDB);
     } catch (err) {
-        res.status(404).json( err );
+        res.status(404).json(err);
     }
 };
