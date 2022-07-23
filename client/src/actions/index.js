@@ -3,6 +3,7 @@ import axios from "axios";
 export const GET_VIDEOGAMES = "GET_VIDEOGAMES";
 export const GET_DETAIL_VIDEOGAME = "GET_DETAIL_VIDEOGAME";
 export const EMPTY_DETAIL_VIDEOGAME = "EMPTY_DETAIL_VIDEOGAME";
+export const GET_GENRES = "GET_GENRES";
 
 export function getVideoGames() {
     return function (dispatch) {
@@ -31,6 +32,18 @@ export function getDetailVideoGame(id) {
 export function emptyDetailVideoGame() {
     return function (dispatch) {
         dispatch({ type: EMPTY_DETAIL_VIDEOGAME });
+    };
+}
+
+export function getGenres() {
+    return function (dispatch) {
+        return axios
+            .get(
+                `http://localhost:3001/genres`
+            )
+            .then(({ data }) => {
+                dispatch({ type: GET_GENRES, payload: data });
+            });
     };
 }
 
