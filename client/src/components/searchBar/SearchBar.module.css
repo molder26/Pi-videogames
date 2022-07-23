@@ -1,0 +1,28 @@
+.searchBar {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: flex-end; */
+    /* align-content: flex-end; */
+    /* margin-top: 20px; */
+    margin-left: 15%;
+}
+
+.inputDecorated {
+    width: 100%;
+    border: 2px solid white;
+    border-radius: 15px;
+    margin: 8px 0;
+    margin-top: 20px;
+    outline: none;
+    padding: 8px;
+    box-sizing: border-box;
+    transition: .3s;
+    font-size: 16px;
+    background-color: #111D2B;
+    color: white;
+}
+
+.inputDecorated:focus {
+    border-color: #00ccff;
+    box-shadow: 0 0 8px 0 #00ccff;
+}

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styles from "./SearchBar.module.css";
 
 export default function SearchBar() {
     const [search, setSearch] = useState("");
@@ -14,17 +15,19 @@ export default function SearchBar() {
     };
 
     return (
-        <>
+        <div className={styles.searchBar}>
             <input
                 type="text"
                 id="searchBox"
                 name="searchBox"
+                placeholder="Search"
                 onChange={handleChange}
                 value={search}
                 autoComplete="off"
+                className={styles.inputDecorated}
             />
 
-            <button onClick={handleClick}>Buscar</button>
-        </>
+            {/* <button onClick={handleClick}>Buscar</button> */}
+        </div>
     );
 }

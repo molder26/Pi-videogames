@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getGenres, getVideoGames } from "../../actions";
-import SearchBar from "../searchBar/SearchBar";
 import Card from "../card/Card";
 import Spinner from "../spinner/Spinner";
 import "./Home.css";
+import NavBar from "../navBar/NavBar";
 
 export default function Home() {
     const dispatch = useDispatch();
@@ -17,7 +17,7 @@ export default function Home() {
 
     return (
         <div className="home">
-            {allVideoGames.length > 0 ? <SearchBar /> : <Spinner />}
+            {allVideoGames.length > 0 ? <NavBar /> : <Spinner />}
             <div className="grid">
                 {allVideoGames 
                     && allVideoGames.map((game) => (
