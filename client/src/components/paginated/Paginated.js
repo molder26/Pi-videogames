@@ -15,31 +15,24 @@ export default function Paginated(props) {
     }
     
 
-    // useEffect(() => {
-    //   updatePages();
-    // }, [pagina])
-    
-
     return (
       <div className={styles.paginated}>
-        {pagina > 0 
-          ? <><button className={styles.Btn} key={'first'} onClick={() => setPagina(0)}>{'<<'}</button>
-            <button className={styles.Btn} key={'prev'} onClick={() => setPagina(pagina-1)}>{'<'}</button></>
-          : <><button className={styles.BtnDisabled} key={'first'}>{'<<'}</button>
-          <button className={styles.BtnDisabled} key={'prev'}>{'<'}</button></>
+        {
+          <>
+            <button className={pagina > 0 ?styles.Btn : styles.BtnDisabled} key={'first'} onClick={() => setPagina(0)}>{'<<'}</button>
+            <button className={pagina > 0 ?styles.Btn : styles.BtnDisabled} key={'prev'} onClick={() => setPagina(pagina-1)}>{'<'}</button>
+          </>
         }
         {
           pageNumbers.length > 0 && pageNumbers.map((p, i) => {
-              return i === pagina 
-                ? <button className={styles.BtnSelected} key={i} onClick={() => setPagina(p)}>{p+1}</button>
-                : <button className={styles.Btn} key={i} onClick={() => setPagina(p)}>{p+1}</button>
-          })
+            return <button className={i === pagina ? styles.BtnSelected : styles.Btn} key={i} onClick={() => setPagina(p)}>{p+1}</button>
+        })
         }
-        {pagina < cantPaginas 
-          ? <><button className={styles.Btn} key={'next'} onClick={() => setPagina(pagina+1)}>{'>'}</button>
-          <button className={styles.Btn} key={'last'} onClick={() => setPagina(cantPaginas)}>{'>>'}</button></>
-          : <><button className={styles.BtnDisabled} key={'next'}>{'>'}</button>
-          <button className={styles.BtnDisabled} key={'last'}>{'>>'}</button></>
+        {
+          <>
+            <button className={pagina < cantPaginas ? styles.Btn : styles.BtnDisabled} key={'next'} onClick={() => setPagina(pagina+1)}>{'>'}</button>
+            <button className={pagina < cantPaginas ? styles.Btn : styles.BtnDisabled} key={'last'} onClick={() => setPagina(cantPaginas)}>{'>>'}</button>
+          </>
         }
       </div>
     );
