@@ -7,8 +7,9 @@ body {
     width: 114em;
     grid-gap: 0.5rem;
     grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 3fr 3fr 3fr;
     justify-items: center;
-    height: 100%;
+    height: calc(87vh - 10px);
 }
 
 .grid-item {

@@ -1,9 +1,12 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import SearchBar from "../searchBar/SearchBar";
 import styles from "./NavBar.module.css";
 
 export default function NavBar() {
+    const { allGenres } = useSelector((state) => state);
+
     return (
         <div className={styles.navbar}>
             <Link to="/home" style={{ textDecoration: "none" }}>
@@ -23,17 +26,17 @@ export default function NavBar() {
             </select>
 
             <select className={styles.select} name="genre" id="genre-select">
-                <option value="">-- Filter Genre --</option>
-                <option value="dog">Dog</option>
-                <option value="cat">Cat</option>
-                <option value="hamster">Hamster</option>
-                <option value="parrot">Parrot</option>
-                <option value="spider">Spider</option>
-                <option value="goldfish">Goldfish</option>
+                <option value="">-- Genre --</option>
+                {allGenres &&
+                    allGenres.map((g) => (
+                        <option key={g.name} value={g.name}>
+                            {g.name}
+                        </option>
+                    ))}
             </select>
 
             <select className={styles.select} name="origen" id="origen-select">
-                <option value="">-- Filter Origen --</option>
+                <option value="">-- Source --</option>
                 <option value="cat">API</option>
                 <option value="cat">Created</option>
             </select>

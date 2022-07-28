@@ -7,13 +7,12 @@ const { Genre } = require("../db.js");
 exports.getGenres = async (req, res) => {
     try {
         const { data } = await axios.get(`${URL}/genres?key=${API_KEY}`);
-
         data.results.forEach((g) => {
             Genre.findOrCreate({
                 where: { id: g.id, name: g.name },
             });
         });
-        const genresDB = await Genre.findAll();
+        const genresDB = await Genre.findAll({order: [['name', 'ASC']]});
         res.status(200).json(genresDB);
     } catch (err) {
         res.status(404).json(err);

@@ -69,5 +69,5 @@ exports.getVideogames = async (req, res) => {
             return res.status(400).send(error);
         }
     }
-    return res.status(200).json(allVideoGames.slice(0, 15));
+    return res.status(200).json(allVideoGames);
 };
