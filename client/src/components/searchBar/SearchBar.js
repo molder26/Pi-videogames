@@ -1,7 +1,10 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { emptyFilteredVideoGames, searchVideoGames } from "../../actions";
 import styles from "./SearchBar.module.css";
 
 export default function SearchBar() {
+    const dispatch = useDispatch();
     const [search, setSearch] = useState("");
 
     const handleChange = (event) => {
@@ -9,8 +12,9 @@ export default function SearchBar() {
     };
 
     const handleClick = (event) => {
-        event.preventDefault();
-        console.log("handleClick 👉️", search);
+        if (search === "") return;
+        dispatch(emptyFilteredVideoGames());
+        dispatch(searchVideoGames(search));
         setSearch("");
     };
 
@@ -27,7 +31,7 @@ export default function SearchBar() {
                 className={styles.inputDecorated}
             />
 
-            {/* <button onClick={handleClick}>Buscar</button> */}
+            <button onClick={handleClick} className={styles.btn}>🔎</button>
         </div>
     );
 }

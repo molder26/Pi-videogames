@@ -2,6 +2,11 @@ body {
     background-color: #111D2B;
 }
 
+.cards {
+    display: flex;
+    justify-content: center;
+}
+
 .grid {
     display: grid;
     width: 114em;
@@ -25,4 +30,10 @@ body {
 .grid-item:hover {
     transform: scale(1.1) translateY(-5.5%);
     box-shadow: 0 4rem 8rem rgba(0, 204, 255, 0.3);
+}
+
+.notFound {
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
 }

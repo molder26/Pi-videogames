@@ -2,12 +2,20 @@
     background-color: #111D2B;
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    height: 70px;
+}
+
+.navbar .link {
+    display: flex;
+    align-items: center;
+    height: 70px;
 }
 
 .navbar .title {
     font-size: 40px;
     color: #00aeff;
-    margin: 10px 50px 0px 40px;
 }
 
 .navbar .title::before {

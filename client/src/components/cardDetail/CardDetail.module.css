@@ -8,14 +8,14 @@
     width: 50%;
     height: 46rem;
     object-fit: cover;
-    margin: 150px 0px 0px 50px;
+    margin: 80px 0px 0px 50px;
     border-radius: 10px;
 }
 
 .detailContent {
     display: flex;
     flex-direction: column;
-    margin: 130px 0px 0px 70px;
+    margin: 70px 0px 0px 70px;
     justify-content: space-between;
 }
 
@@ -28,6 +28,7 @@
 
 .detailDescripcion {
     width: 80%;
+    /* max-height: 30px; */
     color: #ffffff;
     margin: 0px
 }

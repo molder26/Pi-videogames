@@ -20,9 +20,36 @@
     font-size: 16px;
     background-color: #111D2B;
     color: white;
+    height: 40px;
 }
 
 .inputDecorated:focus {
     border-color: #00ccff;
     box-shadow: 0 0 8px 0 #00ccff;
+}
+
+.btn {
+    margin-top: 20px;
+    height: 40px;
+    /* margin: 0px 0px 0px 0px;  */
+    width: 50px;
+    color: #00ccff;
+    text-decoration: none;
+    font-family: "Montserrat", sans-serif;
+    border: 2px solid white;
+    background-color: #111D2B;
+    padding: 1px 1px 1px 1px;
+    font-size: 16px;
+    border-radius: 15px;
+    transition-property: all;
+    transition-duration: 0.5s;
+}
+
+.btn:hover {
+    color: #000000;
+    background-color: #00ccff;
+    border: 2px solid #00ccff;
+    cursor: pointer;
+    transition-property: all;
+    transition-duration: 0.5s;
 }

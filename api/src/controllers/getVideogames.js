@@ -28,12 +28,11 @@ exports.getVideogames = async (req, res) => {
                 };
             });
 
-            console.log(findedVideoGames.length)
             if (findedVideoGames.length > 0)
                 return res.status(200).json(findedVideoGames.slice(0, 15));
             else {
-                findedVideoGames.push({ isEmpty: "true" });
-                return res.status(200).json(findedVideoGames);
+                // findedVideoGames.push({ isEmpty: "true" });
+                return res.status(200).json("No games");
             }
         } catch (error) {
             return res.status(400).send(error);
@@ -59,7 +58,7 @@ exports.getVideogames = async (req, res) => {
                             .map((g) => g.name)
                             .filter((g) => g != null)
                             .join(", "),
-                    // rating: game.rating,
+                    rating: game.rating,
                     // released: game.released,
                     // platforms: game.parent_platforms && game.parent_platforms.map((p) => p.platform.name).filter(p => p != null).join(', '),
                 };

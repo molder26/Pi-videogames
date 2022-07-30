@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { emptyDetailVideoGame, getDetailVideoGame } from "../../actions";
+import NavBar from "../navBar/NavBar";
 import Spinner from "../spinner/Spinner";
 
 import styles from "./CardDetail.module.css";
@@ -22,6 +23,7 @@ export default function CardDetail(props) {
 
     return (
         <div>
+            <NavBar />
             {detailVideoGame.name ? (
                 <div className={styles.detailVista} key={detailVideoGame.id}>
                     <img

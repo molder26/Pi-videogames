@@ -19,8 +19,8 @@ export default function Paginated(props) {
       <div className={styles.paginated}>
         {
           <>
-            <button className={pagina > 0 ?styles.Btn : styles.BtnDisabled} key={'first'} onClick={() => setPagina(0)}>{'<<'}</button>
-            <button className={pagina > 0 ?styles.Btn : styles.BtnDisabled} key={'prev'} onClick={() => setPagina(pagina-1)}>{'<'}</button>
+            <button className={pagina > 0 ? styles.Btn : styles.BtnDisabled} key={'first'} onClick={() => setPagina(0)}>{'<<'}</button>
+            <button className={pagina > 0 ? styles.Btn : styles.BtnDisabled} key={'prev'} onClick={() => setPagina(pagina-1)}>{'<'}</button>
           </>
         }
         {
