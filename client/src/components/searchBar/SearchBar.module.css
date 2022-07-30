@@ -47,7 +47,7 @@
 
 .btn:hover {
     color: #000000;
-    background-color: #00ccff;
+    /* background-color: #00ccff; */
     border: 2px solid #00ccff;
     cursor: pointer;
     transition-property: all;
