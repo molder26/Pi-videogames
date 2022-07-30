@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { emptyFilteredVideoGames, searchVideoGames } from "../../actions";
 import styles from "./SearchBar.module.css";
 
-export default function SearchBar() {
+export default function SearchBar({setFilterBy, setOrderBy}) {
     const dispatch = useDispatch();
     const history = useHistory();
     const [search, setSearch] = useState("");
@@ -15,6 +15,8 @@ export default function SearchBar() {
 
     const handleClick = (event) => {
         if (search === "") return;
+        setFilterBy("");
+        setOrderBy("");
         dispatch(emptyFilteredVideoGames());
         dispatch(searchVideoGames(search));
         setSearch("");

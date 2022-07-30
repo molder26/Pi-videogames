@@ -76,12 +76,10 @@ function rootReducer(state = initialState, action) {
                 ),
             };
         }
-        if (action.payload === "reset") {
-            return {
-                ...state,
-                filteredVideoGames: state.allVideoGames,
-            };
-        }
+        return {
+            ...state,
+            filteredVideoGames: state.allVideoGames,
+        };
     }
     if (action.type === FILTER_VIDEOGAMES) {
         const filtered = state.allVideoGames.filter((game) =>
