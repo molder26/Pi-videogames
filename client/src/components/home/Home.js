@@ -3,10 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { getGenres, getVideoGames } from "../../actions";
 import Card from "../card/Card";
 import Spinner from "../spinner/Spinner";
-import "./Home.css";
 import NavBar from "../navBar/NavBar";
 import Paginated from "../paginated/Paginated";
 import NotFound from "../notFound/NotFound";
+
+import "./Home.css";
 
 export default function Home() {
     const dispatch = useDispatch();
@@ -37,8 +38,7 @@ export default function Home() {
         return (
             <div className="home">
                 <NavBar setPagina={setPagina} />
-                {currentGames.length > 0 ? null : <Spinner />}
-                {/* {currentGames.length > 0 ? <NavBar /> : <Spinner />} */}
+                {currentGames.length === 0 && <Spinner />}
                 <div className="cards">
                     <div className="grid">
                         {currentGames.length > 0 &&

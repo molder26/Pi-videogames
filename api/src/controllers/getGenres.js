@@ -9,7 +9,7 @@ exports.getGenres = async (req, res) => {
         const { data } = await axios.get(`${URL}/genres?key=${API_KEY}`);
         data.results.forEach((g) => {
             Genre.findOrCreate({
-                where: { id: g.id, name: g.name },
+                where: { name: g.name },
             });
         });
         const genresDB = await Genre.findAll({order: [['name', 'ASC']]});
