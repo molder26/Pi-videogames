@@ -7,6 +7,7 @@ import {
     FILTER_VIDEOGAMES,
     SEARCH_VIDEOGAMES,
     EMPTY_FILTERED_VIDEOGAMES,
+    CREATE_VIDEOGAME
 } from "../actions/index";
 
 const initialState = {
@@ -103,6 +104,14 @@ function rootReducer(state = initialState, action) {
             filteredVideoGames: [],
         };
     }
+    // if (action.type === CREATE_VIDEOGAME) {
+    //     const newgame = action.payload;
+
+    //     return {
+    //         ...state,
+    //         allVideoGames: ,
+    //     };
+    // }
 
     return state;
 }

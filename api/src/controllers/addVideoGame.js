@@ -6,18 +6,25 @@ exports.addVideoGame = async (req, res) => {
 
     let platformString = platforms.join(", ");
 
-    let gameCreated = await Videogame.create({
-        name: name,
-        description: description,
-        img: img,
-        released: released,
-        rating: rating,
-        platforms: platformString,
+    try {
+        let gameCreated = await Videogame.create({
+            name: name,
+            description: description,
+            img: img,
+            released: released,
+            rating: rating,
+            platforms: platformString,
     });
 
-    genres.forEach(async (g) => {
-        let genresGame = await Genre.findOne({ where: { name: g } });
-        await gameCreated.addGenre(genresGame);
-    });
-    res.send("Videogame created successfully!");
+        for (const g of genres){
+            let genresGame = await Genre.findOne({ where: { name: g } });
+            await gameCreated.addGenre(genresGame);
+        }
+
+        gameCreated = {...gameCreated.dataValues, genres: genres.map((g) => g).filter(p => p != null).join(', ')};
+
+        return res.status(200).json(gameCreated);
+    } catch (error) {
+        return res.status(404).json(error);
+    }
 };

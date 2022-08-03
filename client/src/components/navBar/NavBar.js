@@ -5,11 +5,11 @@ import { filterVideoGames, orderVideoGames } from "../../actions";
 import SearchBar from "../searchBar/SearchBar";
 import styles from "./NavBar.module.css";
 
-export default function NavBar({setPagina}) {
+export default function NavBar({setPagina, order, filter}) {
     const dispatch = useDispatch();
     const { allGenres } = useSelector((state) => state);
-    const [orderBy, setOrderBy] = useState("");
-    const [filterBy, setFilterBy] = useState("");
+    const [orderBy, setOrderBy] = useState(order ? order : "");
+    const [filterBy, setFilterBy] = useState(filter ? filter : "");
 
     const handleChangeOrder = (e) => {
         setOrderBy(e.target.value);
@@ -32,7 +32,7 @@ export default function NavBar({setPagina}) {
                     VideoGames
                 </p>
             </Link>
-            <Link to="/home" style={{ textDecoration: "none" }}>
+            <Link to="/newgame" style={{ textDecoration: "none" }}>
                 <p className={styles.optionBar}>New Game</p>
             </Link>
             <select className={styles.select} value={orderBy} name="order" id="order-select" onChange={handleChangeOrder}>
