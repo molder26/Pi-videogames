@@ -14,14 +14,20 @@ exports.addVideoGame = async (req, res) => {
             released: released,
             rating: rating,
             platforms: platformString,
-    });
+        });
 
-        for (const g of genres){
+        for (const g of genres) {
             let genresGame = await Genre.findOne({ where: { name: g } });
             await gameCreated.addGenre(genresGame);
         }
 
-        gameCreated = {...gameCreated.dataValues, genres: genres.map((g) => g).filter(p => p != null).join(', ')};
+        gameCreated = {
+            ...gameCreated.dataValues,
+            genres: genres
+                .map((g) => g)
+                .filter((p) => p != null)
+                .join(", "),
+        };
 
         return res.status(200).json(gameCreated);
     } catch (error) {

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { orderVideoGames } from "../../actions";
+import { createVideogame, orderVideoGames } from "../../actions";
 import styles from "./CreateVideoGame.module.css";
 
 export default function CreateVideoGame() {
@@ -89,8 +89,7 @@ export default function CreateVideoGame() {
             return setGenresError("select one or more genres");
         if (!game.platforms || game.platforms.length === 0)
             return setPlatformsError("select one or more platforms");
-        console.log(game);
-
+        
         borrarErrores();
         setGame({
             name: "",
@@ -102,7 +101,8 @@ export default function CreateVideoGame() {
             platforms: [],
         });
 
-        alert("Juego creado exitosamente!");
+        dispatch(createVideogame(game));
+        // alert("Juego creado exitosamente!");
     };
 
     return (
