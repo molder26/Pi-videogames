@@ -10,6 +10,8 @@ export const SEARCH_VIDEOGAMES = "SEARCH_VIDEOGAMES";
 export const EMPTY_FILTERED_VIDEOGAMES = "EMPTY_FILTERED_VIDEOGAMES";
 export const CREATE_VIDEOGAME = "CREATE_VIDEOGAME";
 export const CHANGE_PAGE = "CHANGE_PAGE";
+export const ORIGEN_FILTER_VIDEOGAMES = "ORIGEN_FILTER_VIDEOGAMES";
+
 
 export function getVideoGames() {
     return function (dispatch) {
@@ -93,5 +95,12 @@ export function createVideogame(obj) {
 export function changePage(page) {
     return function (dispatch) {
         dispatch({ type: CHANGE_PAGE, payload: page });
+    };
+}
+
+export function origenFilterVideoGames(origen) {
+    return function (dispatch) {
+        dispatch(emptyFilteredVideoGames());
+        dispatch({ type: ORIGEN_FILTER_VIDEOGAMES, payload: origen });
     };
 }

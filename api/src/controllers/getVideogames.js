@@ -31,7 +31,6 @@ exports.getVideogames = async (req, res) => {
             if (findedVideoGames.length > 0)
                 return res.status(200).json(findedVideoGames.slice(0, 15));
             else {
-                // findedVideoGames.push({ isEmpty: "true" });
                 return res.status(200).json("No games");
             }
         } catch (error) {
@@ -59,8 +58,6 @@ exports.getVideogames = async (req, res) => {
                             .filter((g) => g != null)
                             .join(", "),
                     rating: game.rating,
-                    // released: game.released,
-                    // platforms: game.parent_platforms && game.parent_platforms.map((p) => p.platform.name).filter(p => p != null).join(', '),
                 };
             });
             allVideoGames = allVideoGames.concat(videoGames);

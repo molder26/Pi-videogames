@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { changePage, filterVideoGames, orderVideoGames } from "../../actions";
+import { changePage, emptyFilteredVideoGames, filterVideoGames, orderVideoGames, origenFilterVideoGames } from "../../actions";
 import SearchBar from "../searchBar/SearchBar";
 import styles from "./NavBar.module.css";
 
@@ -12,8 +12,13 @@ export default function NavBar() {
     const [filterBy, setFilterBy] = useState(filterState);
     const [origenBy, setOrigenBy] = useState(origenState);
 
+
+
     const handleChangeOrder = (e) => {
         setOrderBy(e.target.value);
+        // dispatch(emptyFilteredVideoGames());
+        dispatch(origenFilterVideoGames(origenState));
+
         dispatch(filterVideoGames(filterBy));
         dispatch(orderVideoGames(e.target.value));
         dispatch(changePage(0));
@@ -21,6 +26,8 @@ export default function NavBar() {
 
     const handleChangeFilter = (e) => {
         setFilterBy(e.target.value);
+        // dispatch(emptyFilteredVideoGames());
+        dispatch(origenFilterVideoGames(origenState));
         dispatch(filterVideoGames(e.target.value));
         dispatch(orderVideoGames(orderBy));
         dispatch(changePage(0));
@@ -28,8 +35,9 @@ export default function NavBar() {
 
     const handleChangeOrigen = (e) => {
         setOrigenBy(e.target.value);
-
-        dispatch(filterVideoGames(e.target.value));
+        // dispatch(emptyFilteredVideoGames());
+        dispatch(origenFilterVideoGames(e.target.value));
+        dispatch(filterVideoGames(filterBy));
         dispatch(orderVideoGames(orderBy));
         dispatch(changePage(0));
     }

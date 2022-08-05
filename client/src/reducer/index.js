@@ -9,6 +9,7 @@ import {
     EMPTY_FILTERED_VIDEOGAMES,
     CREATE_VIDEOGAME,
     CHANGE_PAGE,
+    ORIGEN_FILTER_VIDEOGAMES
 } from "../actions/index";
 
 const initialState = {
@@ -93,9 +94,9 @@ function rootReducer(state = initialState, action) {
         };
     }
     if (action.type === FILTER_VIDEOGAMES) {
-        const filtered = state.allVideoGames.filter((game) =>
-            game.genres.includes(action.payload)
-        );
+        const filtered = typeof state.filteredVideoGames !== "string" 
+            ? state.filteredVideoGames.filter((game) => game.genres.includes(action.payload))
+            : []
         return {
             ...state,
             filteredVideoGames: filtered.length > 0 ? filtered : "No games",
@@ -132,6 +133,41 @@ function rootReducer(state = initialState, action) {
             page: action.payload,
         };
     }
+    if (action.type === ORIGEN_FILTER_VIDEOGAMES) {
+        // let filtered = [];
+        // if ()
+        // filtered = state.allVideoGames.filter((game) =>
+        //     game.genres.includes(action.payload)
+        // );
+        // return {
+        //     ...state,
+        //     filteredVideoGames: filtered.length > 0 ? filtered : "No games",
+        //     filterState: action.payload,
+        // };
+
+        if (action.payload === "api") {
+            const filtered = state.allVideoGames.filter(game => typeof(game.id) === "number");
+            return {
+                ...state,
+                filteredVideoGames: filtered.length > 0 ? filtered : "No games",
+                origenState: action.payload
+            };
+        }
+        if (action.payload === "db") {
+            const filtered = state.allVideoGames.filter(game => typeof(game.id) === "string");
+            return {
+                ...state,
+                filteredVideoGames: filtered.length > 0 ? filtered : "No games",
+                origenState: action.payload
+            };
+        }
+        return {
+            ...state,
+            filteredVideoGames: state.allVideoGames,
+            origenState: action.payload
+        };
+    }
+
 
     return state;
 }
