@@ -7,7 +7,8 @@ import {
     FILTER_VIDEOGAMES,
     SEARCH_VIDEOGAMES,
     EMPTY_FILTERED_VIDEOGAMES,
-    CREATE_VIDEOGAME
+    CREATE_VIDEOGAME,
+    CHANGE_PAGE,
 } from "../actions/index";
 
 const initialState = {
@@ -15,6 +16,10 @@ const initialState = {
     filteredVideoGames: [],
     detailVideoGame: {},
     allGenres: [],
+    page: 0,
+    orderState: "",
+    filterState: "",
+    origenState: "",
 };
 
 function rootReducer(state = initialState, action) {
@@ -48,38 +53,43 @@ function rootReducer(state = initialState, action) {
         if (action.payload === "abc-asc") {
             return {
                 ...state,
-                filteredVideoGames: [...state.allVideoGames].sort((a, b) =>
+                filteredVideoGames: [...state.filteredVideoGames].sort((a, b) =>
                     a.name.localeCompare(b.name)
                 ),
+                orderState: action.payload
             };
         }
         if (action.payload === "abc-desc") {
             return {
                 ...state,
-                filteredVideoGames: [...state.allVideoGames].sort((a, b) =>
+                filteredVideoGames: [...state.filteredVideoGames].sort((a, b) =>
                     b.name.localeCompare(a.name)
                 ),
+                orderState: action.payload
             };
         }
         if (action.payload === "rating-desc") {
             return {
                 ...state,
-                filteredVideoGames: [...state.allVideoGames].sort(
+                filteredVideoGames: [...state.filteredVideoGames].sort(
                     (a, b) => a.rating - b.rating
                 ),
+                orderState: action.payload
             };
         }
         if (action.payload === "rating-asc") {
             return {
                 ...state,
-                filteredVideoGames: [...state.allVideoGames].sort(
+                filteredVideoGames: [...state.filteredVideoGames].sort(
                     (a, b) => b.rating - a.rating
                 ),
+                orderState: action.payload
             };
         }
         return {
             ...state,
-            filteredVideoGames: state.allVideoGames,
+            filteredVideoGames: state.filteredVideoGames,
+            orderState: action.payload
         };
     }
     if (action.type === FILTER_VIDEOGAMES) {
@@ -89,6 +99,7 @@ function rootReducer(state = initialState, action) {
         return {
             ...state,
             filteredVideoGames: filtered.length > 0 ? filtered : "No games",
+            filterState: action.payload,
         };
     }
     if (action.type === SEARCH_VIDEOGAMES) {
@@ -102,16 +113,25 @@ function rootReducer(state = initialState, action) {
         return {
             ...state,
             filteredVideoGames: [],
+            filterState: "",
+            orderState: "",
+            origenState: "",
+            page: 0,
         };
     }
-    // if (action.type === CREATE_VIDEOGAME) {
-    //     const newgame = action.payload;
-
-    //     return {
-    //         ...state,
-    //         allVideoGames: ,
-    //     };
-    // }
+    if (action.type === CREATE_VIDEOGAME) {
+        return {
+            ...state,
+            filteredVideoGames: [...state.filteredVideoGames, action.payload],
+            allVideoGames: [...state.allVideoGames, action.payload],
+        };
+    }
+    if (action.type === CHANGE_PAGE) {
+        return {
+            ...state,
+            page: action.payload,
+        };
+    }
 
     return state;
 }

@@ -1,7 +1,7 @@
 const { Genre, Videogame } = require("../db.js");
 
 exports.addVideoGame = async (req, res) => {
-    const { name, description, released, rating, genres, img, platforms } =
+    const { name, description, released, rating, genres, image, platforms } =
         req.body;
 
     let platformString = platforms.join(", ");
@@ -10,7 +10,7 @@ exports.addVideoGame = async (req, res) => {
         let gameCreated = await Videogame.create({
             name: name,
             description: description,
-            img: img,
+            img: image,
             released: released,
             rating: rating,
             platforms: platformString,

@@ -6,7 +6,6 @@ import NavBar from "../navBar/NavBar";
 import Spinner from "../spinner/Spinner";
 
 import styles from "./CardDetail.module.css";
-// import "./CardDetail.css";
 
 export default function CardDetail(props) {
     const id = props.match.params.id;

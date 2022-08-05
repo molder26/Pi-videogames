@@ -9,6 +9,7 @@ export const FILTER_VIDEOGAMES = "FILTER_VIDEOGAMES";
 export const SEARCH_VIDEOGAMES = "SEARCH_VIDEOGAMES";
 export const EMPTY_FILTERED_VIDEOGAMES = "EMPTY_FILTERED_VIDEOGAMES";
 export const CREATE_VIDEOGAME = "CREATE_VIDEOGAME";
+export const CHANGE_PAGE = "CHANGE_PAGE";
 
 export function getVideoGames() {
     return function (dispatch) {
@@ -86,4 +87,11 @@ export function createVideogame(obj) {
                 dispatch({ type: CREATE_VIDEOGAME, payload: json });
                 alert("Juego creado exitosamente!");
             });
+}
+
+
+export function changePage(page) {
+    return function (dispatch) {
+        dispatch({ type: CHANGE_PAGE, payload: page });
+    };
 }

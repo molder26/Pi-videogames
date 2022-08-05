@@ -1,28 +1,37 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { filterVideoGames, orderVideoGames } from "../../actions";
+import { changePage, filterVideoGames, orderVideoGames } from "../../actions";
 import SearchBar from "../searchBar/SearchBar";
 import styles from "./NavBar.module.css";
 
-export default function NavBar({setPagina, order, filter}) {
+export default function NavBar() {
     const dispatch = useDispatch();
-    const { allGenres } = useSelector((state) => state);
-    const [orderBy, setOrderBy] = useState(order ? order : "");
-    const [filterBy, setFilterBy] = useState(filter ? filter : "");
+    const { allGenres, filterState, origenState, orderState } = useSelector((state) => state);
+    const [orderBy, setOrderBy] = useState(orderState);
+    const [filterBy, setFilterBy] = useState(filterState);
+    const [origenBy, setOrigenBy] = useState(origenState);
 
     const handleChangeOrder = (e) => {
         setOrderBy(e.target.value);
-        setFilterBy("");
+        dispatch(filterVideoGames(filterBy));
         dispatch(orderVideoGames(e.target.value));
-        setPagina(0);
+        dispatch(changePage(0));
     }
 
     const handleChangeFilter = (e) => {
         setFilterBy(e.target.value);
-        setOrderBy("");
         dispatch(filterVideoGames(e.target.value));
-        setPagina(0);
+        dispatch(orderVideoGames(orderBy));
+        dispatch(changePage(0));
+    }
+
+    const handleChangeOrigen = (e) => {
+        setOrigenBy(e.target.value);
+
+        dispatch(filterVideoGames(e.target.value));
+        dispatch(orderVideoGames(orderBy));
+        dispatch(changePage(0));
     }
 
     return (
@@ -53,7 +62,7 @@ export default function NavBar({setPagina, order, filter}) {
                     ))}
             </select>
 
-            <select className={styles.select} name="origen" id="origen-select">
+            <select className={styles.select} name="origen" id="origen-select" value={origenBy} onChange={handleChangeOrigen}>
                 <option value="">-- Source --</option>
                 <option value="api">API</option>
                 <option value="db">Created</option>
