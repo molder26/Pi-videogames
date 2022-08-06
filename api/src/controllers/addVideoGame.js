@@ -25,7 +25,6 @@ exports.addVideoGame = async (req, res) => {
             ...gameCreated.dataValues,
             genres: genres
                 .map((g) => g)
-                .filter((p) => p != null)
                 .join(", "),
         };
 

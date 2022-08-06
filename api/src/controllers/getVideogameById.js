@@ -10,8 +10,7 @@ exports.getVideogameById = async (req, res) => {
     let detailVideoGame = {};
 
     try {
-        if (typeof id !== "string") {
-            console.log("entra");
+        if (id.length < 10) {
             const { data } = await axios.get(
                 `${URL}/games/${id}?key=${API_KEY}`
             );
