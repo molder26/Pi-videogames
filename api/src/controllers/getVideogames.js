@@ -7,32 +7,36 @@ const { Videogame, Genre } = require("../db.js");
 exports.getVideogames = async (req, res) => {
     const { name } = req.query;
     let allVideoGames = [];
-    let gamesDBFull = {};
+    let gamesDBFull = [];
+    let gamesDB = [];
     let nextUrl = URL;
+    let findedVideoGames = [];
 
     try {
         if (name) {
-            let gamesDB = await Videogame.findOne({
+            gamesDB = await Videogame.findAll({
                 where: { name: name },
                 include: [Genre],
             });
-            if (gamesDB) {
-                gamesDBFull = {
-                    id: gamesDB.id,
-                    name: gamesDB.name,
-                    image: gamesDB.image,
-                    rating: gamesDB.rating,
-                    genres: gamesDB.genres.map((g) => g.name).join(", "),
-                    released: gamesDB.released,
-                    description: gamesDB.description,
-                };
+
+            console.log(gamesDB);
+            if (gamesDB.length > 0) {
+                gamesDBFull = gamesDB.map((g) => ({
+                    id: g.dataValues.id,
+                    name: g.dataValues.name,
+                    img: g.dataValues.img,
+                    genres: g.dataValues.genres
+                        .map((g) => g.name)
+                        .filter((p) => p != null)
+                        .join(", "),
+                }));
             }
 
             const { data } = await axios.get(
                 `${URL}/games?key=${API_KEY}&search=${name}`
             );
 
-            const findedVideoGames = data.results.map((game) => {
+            findedVideoGames = data.results.map((game) => {
                 return {
                     id: game.id,
                     name: game.name,
@@ -46,7 +50,7 @@ exports.getVideogames = async (req, res) => {
                 };
             });
 
-            findedVideoGames = findedVideoGames.concat(gamesDBFull);
+            findedVideoGames = gamesDBFull.concat(findedVideoGames);
 
             if (findedVideoGames.length > 0)
                 return res.status(200).json(findedVideoGames.slice(0, 15));
@@ -62,7 +66,7 @@ exports.getVideogames = async (req, res) => {
 
             nextUrl = data.next;
 
-            const videoGames = data.results.map((game) => {
+            const videoGame = data.results.map((game) => {
                 return {
                     id: game.id,
                     name: game.name,
@@ -76,18 +80,21 @@ exports.getVideogames = async (req, res) => {
                     rating: game.rating,
                 };
             });
-            allVideoGames = allVideoGames.concat(videoGames);
+            allVideoGames = allVideoGames.concat(videoGame);
         }
 
-        // const dbGames = await Videogame.findAll({ include: [Genre] });
-        // const jsonGames = dbGames.map((J) => J.toJSON());
-        // jsonGames.forEach((C) => {
-        //     C.genres = C.genres
-        //         .map((genre) => genre.name)
-        //         .filter((p) => p != null)
-        //         .join(", ");
-        // });
-        // allVideoGames = gamesResults.concat(jsonGames);
+        gamesDB = await Videogame.findAll({ include: [Genre] });
+        gamesDBFull = gamesDB.map((g) => ({
+            id: g.dataValues.id,
+            name: g.dataValues.name,
+            img: g.dataValues.img,
+            genres: g.dataValues.genres
+                .map((g) => g.name)
+                .filter((p) => p != null)
+                .join(", "),
+        }));
+        allVideoGames = allVideoGames.concat(gamesDBFull);
+
         return res.status(200).json(allVideoGames);
     } catch (error) {
         return res.status(400).send(error);

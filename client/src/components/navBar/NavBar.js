@@ -44,8 +44,7 @@ export default function NavBar() {
                     VideoGames
                 </p>
             </Link>
-            <Link to="/newgame" style={{ textDecoration: "none" }}>
-                <p className={styles.optionBar}>New Game</p>
+            <Link to="/newgame" className={styles.optionBar} style={{ textDecoration: "none" }}>New Game
             </Link>
             <select className={styles.select} value={orderBy} name="order" id="order-select" onChange={handleChangeOrder}>
                 <option value="">-- Order By --</option>

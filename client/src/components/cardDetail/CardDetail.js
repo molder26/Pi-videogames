@@ -18,7 +18,11 @@ export default function CardDetail(props) {
     useEffect(() => {
         dispatch(emptyDetailVideoGame());
         dispatch(getDetailVideoGame(id));
+        return () => {
+            dispatch(emptyDetailVideoGame());
+          }
     }, [dispatch, id]);
+    
 
     return (
         <div>
