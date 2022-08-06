@@ -25,6 +25,7 @@ export default function Paginated(props) {
             {
                 <>
                     <button
+                        disabled={pagina === 0}
                         className={pagina > 0 ? styles.Btn : styles.BtnDisabled}
                         key={"first"}
                         onClick={() => handleChangePage(0)}
@@ -32,6 +33,7 @@ export default function Paginated(props) {
                         {"<<"}
                     </button>
                     <button
+                        disabled={pagina === 0}
                         className={pagina > 0 ? styles.Btn : styles.BtnDisabled}
                         key={"prev"}
                         onClick={() => handleChangePage(pagina - 1)}
@@ -44,6 +46,7 @@ export default function Paginated(props) {
                 pageNumbers.map((p, i) => {
                     return (
                         <button
+                            disabled={i === pagina}
                             className={
                                 i === pagina ? styles.BtnSelected : styles.Btn
                             }
@@ -57,6 +60,7 @@ export default function Paginated(props) {
             {
                 <>
                     <button
+                        disabled={pagina === cantPaginas}
                         className={
                             pagina < cantPaginas
                                 ? styles.Btn
@@ -68,6 +72,7 @@ export default function Paginated(props) {
                         {">"}
                     </button>
                     <button
+                        disabled={pagina === cantPaginas}
                         className={
                             pagina < cantPaginas
                                 ? styles.Btn

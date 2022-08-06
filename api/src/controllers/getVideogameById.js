@@ -10,50 +10,62 @@ exports.getVideogameById = async (req, res) => {
     let detailVideoGame = {};
 
     try {
-        // if (typeof id === "number") {
-        const { data } = await axios.get(`${URL}/games/${id}?key=${API_KEY}`);
+        if (typeof id !== "string") {
+            console.log("entra");
+            const { data } = await axios.get(
+                `${URL}/games/${id}?key=${API_KEY}`
+            );
 
-        detailVideoGame = {
-            id: data.id,
-            name: data.name,
-            img: data.background_image,
-            genres:
-                data.genres &&
-                data.genres
-                    .map((g) => g.name)
-                    .filter((g) => g != null)
-                    .join(", "),
-            description:
-                data.description.length < 1200
-                    ? data.description
-                    : data.description.substring(0, 1200) + " ...",
-            released: data.released,
-            rating: data.rating,
-            platforms:
-                data.parent_platforms &&
-                data.parent_platforms
-                    .map((p) => p.platform.name)
+            detailVideoGame = {
+                id: data.id,
+                name: data.name,
+                img: data.background_image,
+                genres:
+                    data.genres &&
+                    data.genres
+                        .map((g) => g.name)
+                        .filter((g) => g != null)
+                        .join(", "),
+                description:
+                    data.description.length < 1200
+                        ? data.description
+                        : data.description.substring(0, 1200) + " ...",
+                released: data.released,
+                rating: data.rating,
+                platforms:
+                    data.parent_platforms &&
+                    data.parent_platforms
+                        .map((p) => p.platform.name)
+                        .filter((p) => p != null)
+                        .join(", "),
+            };
+            return res.status(200).json(detailVideoGame);
+        } else {
+            detailVideoGame = await Videogame.findOne({
+                where: { id: id },
+                include: {
+                    model: Genre,
+                    attributes: ["name"],
+                    through: { attributes: [] },
+                },
+            });
+
+            const formatedDetailVideoGame = {
+                id: detailVideoGame.id,
+                name: detailVideoGame.name,
+                description: detailVideoGame.description,
+                img: detailVideoGame.img,
+                released: detailVideoGame.released,
+                rating: detailVideoGame.rating,
+                platforms: detailVideoGame.platforms,
+                genres: detailVideoGame.genres
+                    .map((p) => p.name)
                     .filter((p) => p != null)
                     .join(", "),
-        };
-        // } else {
-        //     detailVideoGame = await Videogame.findOne({
-        //         where: { id: id },
-        //         include: {
-        //             model: Genre,
-        //             attributes: ["name"],
-        //             through: { attributes: [] },
-        //         },
-        //     });
-        //     detailVideoGame.genres =
-        //         detailVideoGame.genres && "entra"
-        //         // detailVideoGame.genres
-        //         //     .map((p) => p.name)
-        //         //     .filter((p) => p != null)
-        //         //     .join(", ");
-        // }
+            };
 
-        return res.status(200).json(detailVideoGame);
+            return res.status(200).json(formatedDetailVideoGame);
+        }
     } catch (error) {
         return res.status(400).send(error);
     }

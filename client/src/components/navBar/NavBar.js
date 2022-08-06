@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { changePage, emptyFilteredVideoGames, filterVideoGames, orderVideoGames, origenFilterVideoGames } from "../../actions";
+import { changePage, filterVideoGames, orderVideoGames, origenFilterVideoGames } from "../../actions";
 import SearchBar from "../searchBar/SearchBar";
 import styles from "./NavBar.module.css";
 
@@ -13,12 +13,9 @@ export default function NavBar() {
     const [origenBy, setOrigenBy] = useState(origenState);
 
 
-
     const handleChangeOrder = (e) => {
         setOrderBy(e.target.value);
-        // dispatch(emptyFilteredVideoGames());
         dispatch(origenFilterVideoGames(origenState));
-
         dispatch(filterVideoGames(filterBy));
         dispatch(orderVideoGames(e.target.value));
         dispatch(changePage(0));
@@ -26,7 +23,6 @@ export default function NavBar() {
 
     const handleChangeFilter = (e) => {
         setFilterBy(e.target.value);
-        // dispatch(emptyFilteredVideoGames());
         dispatch(origenFilterVideoGames(origenState));
         dispatch(filterVideoGames(e.target.value));
         dispatch(orderVideoGames(orderBy));
@@ -35,7 +31,6 @@ export default function NavBar() {
 
     const handleChangeOrigen = (e) => {
         setOrigenBy(e.target.value);
-        // dispatch(emptyFilteredVideoGames());
         dispatch(origenFilterVideoGames(e.target.value));
         dispatch(filterVideoGames(filterBy));
         dispatch(orderVideoGames(orderBy));
@@ -72,8 +67,8 @@ export default function NavBar() {
 
             <select className={styles.select} name="origen" id="origen-select" value={origenBy} onChange={handleChangeOrigen}>
                 <option value="">-- Source --</option>
-                <option value="api">API</option>
-                <option value="db">Created</option>
+                <option value="api">API WEB</option>
+                <option value="db">DB</option>
             </select>
 
             <SearchBar setFilterBy={setFilterBy} setOrderBy={setOrderBy}/>
