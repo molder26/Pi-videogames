@@ -98,7 +98,7 @@ export default function CreateVideoGame() {
         });
 
         dispatch(createVideogame(game));
-        // alert("Juego creado exitosamente!");
+        alert("Juego creado exitosamente!");
     };
 
     return (

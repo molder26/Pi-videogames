@@ -38,7 +38,7 @@ export default function NavBar() {
     }
 
     return (
-        <div className={styles.navbar}>
+        <div name="navBarContainer" className={styles.navbar}>
             <Link to="/home" style={{ textDecoration: "none" }} className={styles.link}>
                 <p className={styles.title} data-text="VideoGames">
                     VideoGames

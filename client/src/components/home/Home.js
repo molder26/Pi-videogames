@@ -7,6 +7,7 @@ import Paginated from "../paginated/Paginated";
 import NotFound from "../notFound/NotFound";
 
 import "./Home.css";
+import NavBar from "../navBar/NavBar";
 
 export default function Home() {
     const dispatch = useDispatch();
@@ -26,6 +27,7 @@ export default function Home() {
     if (typeof filteredVideoGames === "string") {
         return  (
             <div className="notFound">
+                <NavBar />
                 <NotFound />
             </div>
         )
@@ -34,6 +36,7 @@ export default function Home() {
 
         return (
             <div className="home">
+                <NavBar />
                 {currentGames.length === 0 && <Spinner />}
                 <div className="cards">
                     <div className="grid">

@@ -87,7 +87,6 @@ export function createVideogame(obj) {
             .then((resp) => resp.json())
             .then((json) => {
                 dispatch({ type: CREATE_VIDEOGAME, payload: json });
-                alert("Juego creado exitosamente!");
             });
 }
 

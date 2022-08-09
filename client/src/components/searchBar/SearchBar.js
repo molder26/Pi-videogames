@@ -24,7 +24,7 @@ export default function SearchBar({setFilterBy, setOrderBy}) {
     };
 
     return (
-        <div className={styles.searchBar}>
+        <div data-testid="searchbar" className={styles.searchBar}>
             <input
                 type="text"
                 id="searchBox"
