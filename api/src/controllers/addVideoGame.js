@@ -4,6 +4,12 @@ exports.addVideoGame = async (req, res) => {
     const { name, description, released, rating, genres, image, platforms } =
         req.body;
 
+    if (!name || !description || !released || !rating || !genres || !image || !platforms) {
+        return res.status(400).json({
+            message: "All fields are required",
+        });
+    }
+
     let platformString = platforms.join(", ");
 
     try {
