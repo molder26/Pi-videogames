@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { BsFillSunFill } from 'react-icons/bs';
+import { MdDarkMode } from "react-icons/md";
 import { Link } from "react-router-dom";
 import {
     changePage,
@@ -18,7 +20,8 @@ export default function NavBar() {
     const [filterBy, setFilterBy] = useState(filterState);
     const [origenBy, setOrigenBy] = useState(origenState);
 
-    const theme = window.localStorage.getItem("theme");
+    let themeSaved = window.localStorage.getItem("theme");
+    const [theme, setTheme] = useState(themeSaved || "dark");
 
     const setSelects = (order = "", filter = "", origen = "") => {
         setOrderBy(order);
@@ -48,6 +51,7 @@ export default function NavBar() {
 
     const handleToggleTheme = () => {
         window.localStorage.setItem("theme", theme === "light" ? "dark" : "light");
+        setTheme(theme === "light" ? "dark" : "light");
         document.body.classList.toggle("light");
     };
 
@@ -120,11 +124,14 @@ export default function NavBar() {
             <SearchBar setFilterBy={setFilterBy} setOrderBy={setOrderBy} />
 
             <button onClick={handleToggleTheme} className={styles.btnLightDark}>
-                CC
+                {
+                    theme === "light"
+                    ? <BsFillSunFill />
+                    : <MdDarkMode />
+                    
+                }
             </button>
-            {
-                console.log(theme)
-            }
+            
         </div>
     );
 }
