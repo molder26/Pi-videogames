@@ -12,7 +12,6 @@ export const CREATE_VIDEOGAME = "CREATE_VIDEOGAME";
 export const CHANGE_PAGE = "CHANGE_PAGE";
 export const ORIGEN_FILTER_VIDEOGAMES = "ORIGEN_FILTER_VIDEOGAMES";
 
-
 export function getVideoGames() {
     return function (dispatch) {
         return axios
@@ -89,7 +88,6 @@ export function createVideogame(obj) {
                 dispatch({ type: CREATE_VIDEOGAME, payload: json });
             });
 }
-
 
 export function changePage(page) {
     return function (dispatch) {
