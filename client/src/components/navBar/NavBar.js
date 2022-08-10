@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
     changePage,
-    changeTheme,
     filterVideoGames,
     orderVideoGames,
     origenFilterVideoGames,
@@ -13,17 +12,13 @@ import styles from "./NavBar.module.css";
 
 export default function NavBar() {
     const dispatch = useDispatch();
-    const { allGenres, filterState, origenState, orderState, themeState } =
+    const { allGenres, filterState, origenState, orderState } =
         useSelector((state) => state);
     const [orderBy, setOrderBy] = useState(orderState);
     const [filterBy, setFilterBy] = useState(filterState);
     const [origenBy, setOrigenBy] = useState(origenState);
 
-    const [theme, setTheme] = useState(themeState);
-
-    useEffect(() => {
-        dispatch(changeTheme(theme));
-    }, [dispatch, theme]);
+    const theme = window.localStorage.getItem("theme");
 
     const setSelects = (order = "", filter = "", origen = "") => {
         setOrderBy(order);
@@ -52,12 +47,11 @@ export default function NavBar() {
     };
 
     const handleToggleTheme = () => {
-        setTheme(!theme);
+        window.localStorage.setItem("theme", theme === "light" ? "dark" : "light");
         document.body.classList.toggle("light");
-        // document.navBarContainer.classList.toggle("light");
     };
 
-    if (theme) document.body.classList.add("light");
+    if (theme === "light") document.body.classList.add("light");
 
     return (
         <div name="navBarContainer" className={styles.navbar}>

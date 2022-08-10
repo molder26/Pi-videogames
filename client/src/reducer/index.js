@@ -10,7 +10,6 @@ import {
     CREATE_VIDEOGAME,
     CHANGE_PAGE,
     ORIGEN_FILTER_VIDEOGAMES,
-    CHANGE_THEME
 } from "../actions/index";
 
 const initialState = {
@@ -22,7 +21,6 @@ const initialState = {
     orderState: "",
     filterState: "",
     origenState: "",
-    themeState: false
 };
 
 function rootReducer(state = initialState, action) {
@@ -59,7 +57,7 @@ function rootReducer(state = initialState, action) {
                 filteredVideoGames: [...state.filteredVideoGames].sort((a, b) =>
                     a.name.localeCompare(b.name)
                 ),
-                orderState: action.payload
+                orderState: action.payload,
             };
         }
         if (action.payload === "abc-desc") {
@@ -68,7 +66,7 @@ function rootReducer(state = initialState, action) {
                 filteredVideoGames: [...state.filteredVideoGames].sort((a, b) =>
                     b.name.localeCompare(a.name)
                 ),
-                orderState: action.payload
+                orderState: action.payload,
             };
         }
         if (action.payload === "rating-desc") {
@@ -77,7 +75,7 @@ function rootReducer(state = initialState, action) {
                 filteredVideoGames: [...state.filteredVideoGames].sort(
                     (a, b) => a.rating - b.rating
                 ),
-                orderState: action.payload
+                orderState: action.payload,
             };
         }
         if (action.payload === "rating-asc") {
@@ -86,19 +84,22 @@ function rootReducer(state = initialState, action) {
                 filteredVideoGames: [...state.filteredVideoGames].sort(
                     (a, b) => b.rating - a.rating
                 ),
-                orderState: action.payload
+                orderState: action.payload,
             };
         }
         return {
             ...state,
             filteredVideoGames: state.filteredVideoGames,
-            orderState: action.payload
+            orderState: action.payload,
         };
     }
     if (action.type === FILTER_VIDEOGAMES) {
-        const filtered = typeof state.filteredVideoGames !== "string" 
-            ? state.filteredVideoGames.filter((game) => game.genres.includes(action.payload))
-            : []
+        const filtered =
+            typeof state.filteredVideoGames !== "string"
+                ? state.filteredVideoGames.filter((game) =>
+                      game.genres.includes(action.payload)
+                  )
+                : [];
         return {
             ...state,
             filteredVideoGames: filtered.length > 0 ? filtered : "No games",
@@ -137,34 +138,31 @@ function rootReducer(state = initialState, action) {
     }
     if (action.type === ORIGEN_FILTER_VIDEOGAMES) {
         if (action.payload === "api") {
-            const filtered = state.allVideoGames.filter(game => typeof(game.id) === "number");
+            const filtered = state.allVideoGames.filter(
+                (game) => typeof game.id === "number"
+            );
             return {
                 ...state,
                 filteredVideoGames: filtered.length > 0 ? filtered : "No games",
-                origenState: action.payload
+                origenState: action.payload,
             };
         }
         if (action.payload === "db") {
-            const filtered = state.allVideoGames.filter(game => typeof(game.id) === "string");
+            const filtered = state.allVideoGames.filter(
+                (game) => typeof game.id === "string"
+            );
             return {
                 ...state,
                 filteredVideoGames: filtered.length > 0 ? filtered : "No games",
-                origenState: action.payload
+                origenState: action.payload,
             };
         }
         return {
             ...state,
             filteredVideoGames: state.allVideoGames,
-            origenState: action.payload
+            origenState: action.payload,
         };
     }
-    if (action.type === CHANGE_THEME) {
-        return {
-            ...state,
-            themeState: action.payload,
-        };
-    }
-
 
     return state;
 }

@@ -11,7 +11,6 @@ export const EMPTY_FILTERED_VIDEOGAMES = "EMPTY_FILTERED_VIDEOGAMES";
 export const CREATE_VIDEOGAME = "CREATE_VIDEOGAME";
 export const CHANGE_PAGE = "CHANGE_PAGE";
 export const ORIGEN_FILTER_VIDEOGAMES = "ORIGEN_FILTER_VIDEOGAMES";
-export const CHANGE_THEME = "CHANGE_THEME"
 
 export function getVideoGames() {
     return function (dispatch) {
@@ -100,11 +99,5 @@ export function origenFilterVideoGames(origen) {
     return function (dispatch) {
         dispatch(emptyFilteredVideoGames());
         dispatch({ type: ORIGEN_FILTER_VIDEOGAMES, payload: origen });
-    };
-}
-
-export function changeTheme(theme) {
-    return function (dispatch) {
-        dispatch({ type: CHANGE_THEME, payload: theme });
     };
 }
