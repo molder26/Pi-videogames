@@ -5,7 +5,6 @@ import CardDetail from "./components/cardDetail/CardDetail";
 import CreateVideoGame from "./components/createVideoGame/CreateVideoGame";
 
 import "./App.css";
-import NavBar from "./components/navBar/NavBar";
 import Error404 from "./components/error404/Error404";
 
 function App() {
@@ -13,7 +12,6 @@ function App() {
         <BrowserRouter>
             <Switch>
                 <Route exact path="/" component={Welcome}></Route>
-                {/* <Route path="/home" component={NavBar} /> */}
                 <Route path="/home" component={Home}></Route>
                 <Route path="/detail/:id" component={CardDetail}></Route>
                 <Route path="/newgame" component={CreateVideoGame}></Route>

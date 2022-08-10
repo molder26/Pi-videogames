@@ -22,14 +22,14 @@
 .detailTitulo {
     font-size: 2rem;
     font-weight: 300;
-    color: #ffffff;
+    color: var(--text-color);
     width: 700px;
 }
 
 .detailDescripcion {
     width: 80%;
     /* max-height: 30px; */
-    color: #ffffff;
+    color: var(--text-color);
     margin: 0px
 }
 
@@ -38,7 +38,7 @@
 .detailRating,
 .detailReleased
 {
-    color: #ffffff;
+    color: var(--text-color);
 }
 
 .detailBtnBack {
@@ -48,7 +48,7 @@
     text-decoration: none;
     font-family: "Montserrat", sans-serif;
     border: 2px solid #00ccff;
-    background-color: #111D2B;
+    background-color: var(--bg-color);
     padding: 10px 10px 10px 10px;
     font-size: 16px;
     border-radius: 5px;

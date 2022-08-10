@@ -9,7 +9,8 @@ import {
     EMPTY_FILTERED_VIDEOGAMES,
     CREATE_VIDEOGAME,
     CHANGE_PAGE,
-    ORIGEN_FILTER_VIDEOGAMES
+    ORIGEN_FILTER_VIDEOGAMES,
+    CHANGE_THEME
 } from "../actions/index";
 
 const initialState = {
@@ -21,6 +22,7 @@ const initialState = {
     orderState: "",
     filterState: "",
     origenState: "",
+    themeState: false
 };
 
 function rootReducer(state = initialState, action) {
@@ -134,17 +136,6 @@ function rootReducer(state = initialState, action) {
         };
     }
     if (action.type === ORIGEN_FILTER_VIDEOGAMES) {
-        // let filtered = [];
-        // if ()
-        // filtered = state.allVideoGames.filter((game) =>
-        //     game.genres.includes(action.payload)
-        // );
-        // return {
-        //     ...state,
-        //     filteredVideoGames: filtered.length > 0 ? filtered : "No games",
-        //     filterState: action.payload,
-        // };
-
         if (action.payload === "api") {
             const filtered = state.allVideoGames.filter(game => typeof(game.id) === "number");
             return {
@@ -165,6 +156,12 @@ function rootReducer(state = initialState, action) {
             ...state,
             filteredVideoGames: state.allVideoGames,
             origenState: action.payload
+        };
+    }
+    if (action.type === CHANGE_THEME) {
+        return {
+            ...state,
+            themeState: action.payload,
         };
     }
 

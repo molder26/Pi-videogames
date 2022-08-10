@@ -1,52 +1,89 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { changePage, filterVideoGames, orderVideoGames, origenFilterVideoGames } from "../../actions";
+import {
+    changePage,
+    changeTheme,
+    filterVideoGames,
+    orderVideoGames,
+    origenFilterVideoGames,
+} from "../../actions";
 import SearchBar from "../searchBar/SearchBar";
 import styles from "./NavBar.module.css";
 
 export default function NavBar() {
     const dispatch = useDispatch();
-    const { allGenres, filterState, origenState, orderState } = useSelector((state) => state);
+    const { allGenres, filterState, origenState, orderState, themeState } =
+        useSelector((state) => state);
     const [orderBy, setOrderBy] = useState(orderState);
     const [filterBy, setFilterBy] = useState(filterState);
     const [origenBy, setOrigenBy] = useState(origenState);
 
+    const [theme, setTheme] = useState(themeState);
+
+    useEffect(() => {
+        dispatch(changeTheme(theme));
+    }, [dispatch, theme]);
+
+    const setSelects = (order = "", filter = "", origen = "") => {
+        setOrderBy(order);
+        setFilterBy(filter);
+        setOrigenBy(origen);
+        dispatch(origenFilterVideoGames(origen));
+        dispatch(filterVideoGames(filter));
+        dispatch(orderVideoGames(order));
+        dispatch(changePage(0));
+    };
 
     const handleChangeOrder = (e) => {
-        setOrderBy(e.target.value);
-        dispatch(origenFilterVideoGames(origenState));
-        dispatch(filterVideoGames(filterBy));
-        dispatch(orderVideoGames(e.target.value));
-        dispatch(changePage(0));
-    }
+        setSelects(e.target.value, filterBy, origenBy);
+    };
 
     const handleChangeFilter = (e) => {
-        setFilterBy(e.target.value);
-        dispatch(origenFilterVideoGames(origenState));
-        dispatch(filterVideoGames(e.target.value));
-        dispatch(orderVideoGames(orderBy));
-        dispatch(changePage(0));
-    }
+        setSelects(orderBy, e.target.value, origenBy);
+    };
 
     const handleChangeOrigen = (e) => {
-        setOrigenBy(e.target.value);
-        dispatch(origenFilterVideoGames(e.target.value));
-        dispatch(filterVideoGames(filterBy));
-        dispatch(orderVideoGames(orderBy));
-        dispatch(changePage(0));
-    }
+        setSelects(orderBy, filterBy, e.target.value);
+    };
+
+    const handleCleanFilters = () => {
+        setSelects();
+    };
+
+    const handleToggleTheme = () => {
+        setTheme(!theme);
+        document.body.classList.toggle("light");
+        // document.navBarContainer.classList.toggle("light");
+    };
+
+    if (theme) document.body.classList.add("light");
 
     return (
         <div name="navBarContainer" className={styles.navbar}>
-            <Link to="/home" style={{ textDecoration: "none" }} className={styles.link}>
+            <Link
+                to="/home"
+                style={{ textDecoration: "none" }}
+                className={styles.link}
+            >
                 <p className={styles.title} data-text="VideoGames">
                     VideoGames
                 </p>
             </Link>
-            <Link to="/newgame" className={styles.optionBar} style={{ textDecoration: "none" }}>New Game
+            <Link
+                to="/newgame"
+                className={styles.optionBar}
+                style={{ textDecoration: "none" }}
+            >
+                New Game
             </Link>
-            <select className={styles.select} value={orderBy} name="order" id="order-select" onChange={handleChangeOrder}>
+            <select
+                className={styles.select}
+                value={orderBy}
+                name="order"
+                id="order-select"
+                onChange={handleChangeOrder}
+            >
                 <option value="">-- Order By --</option>
                 <option value="abc-asc">A-Z</option>
                 <option value="abc-desc">Z-A</option>
@@ -54,7 +91,13 @@ export default function NavBar() {
                 <option value="rating-desc">Rating -</option>
             </select>
 
-            <select className={styles.select} value={filterBy} name="genre" id="genre-select" onChange={handleChangeFilter}>
+            <select
+                className={styles.select}
+                value={filterBy}
+                name="genre"
+                id="genre-select"
+                onChange={handleChangeFilter}
+            >
                 <option value="">-- Genre --</option>
                 {allGenres &&
                     allGenres.map((g) => (
@@ -64,13 +107,30 @@ export default function NavBar() {
                     ))}
             </select>
 
-            <select className={styles.select} name="origen" id="origen-select" value={origenBy} onChange={handleChangeOrigen}>
+            <select
+                className={styles.select}
+                name="origen"
+                id="origen-select"
+                value={origenBy}
+                onChange={handleChangeOrigen}
+            >
                 <option value="">-- Source --</option>
                 <option value="api">API WEB</option>
                 <option value="db">DB</option>
             </select>
 
-            <SearchBar setFilterBy={setFilterBy} setOrderBy={setOrderBy}/>
+            <button onClick={handleCleanFilters} className={styles.btn}>
+                Clean Filters
+            </button>
+
+            <SearchBar setFilterBy={setFilterBy} setOrderBy={setOrderBy} />
+
+            <button onClick={handleToggleTheme} className={styles.btnLightDark}>
+                CC
+            </button>
+            {
+                console.log(theme)
+            }
         </div>
     );
 }

@@ -1,6 +1,15 @@
 body {
-    background-color: #111D2B;
+    --bg-color: #111D2B;
+    --text-color: #ffffff;
+    --card-color: #253743;
+    background-color: var(--bg-color);
 }
+
+.light {
+    --bg-color: #ffffff;
+    --text-color: #000000;
+    --card-color: #d4d4d4;
+  }
 
 .cards {
     display: flex;

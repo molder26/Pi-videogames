@@ -10,7 +10,7 @@ describe("Videogame model", () => {
     });
 
     describe("Validators", () => {
-        beforeEach(() => Videogame.sync({ force: true }));
+        beforeEach(() => Videogame.sync({ force: false }));
         describe("name", () => {
             it("should throw an error if name is null", async () => {
                 await Videogame.create({}).catch(function (err) {

@@ -12,7 +12,7 @@
     text-decoration: none;
     font-family: "Montserrat", sans-serif;
     border: 2px solid #00ccff;
-    background-color: #111D2B;
+    background-color: var(--bg-color);
     padding: 5px 5px 5px 5px;
     font-size: 16px;
     border-radius: 5px;
@@ -35,7 +35,7 @@
     text-decoration: none;
     font-family: "Montserrat", sans-serif;
     border: 2px solid #878888;
-    background-color: #111D2B;
+    background-color: var(--bg-color);
     padding: 5px 5px 5px 5px;
     font-size: 16px;
     border-radius: 5px;

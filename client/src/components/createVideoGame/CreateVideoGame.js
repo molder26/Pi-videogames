@@ -252,14 +252,14 @@ export default function CreateVideoGame() {
                             </form>
                         </div>
                         <button className={styles.btn} onClick={history.goBack}>
-                            Cancelar
+                            Back
                         </button>
                         <button
                             className={styles.btn}
                             type="submit"
                             onClick={handleOnSubmit}
                         >
-                            Crear
+                            Create
                         </button>
                     </div>
                 </div>
