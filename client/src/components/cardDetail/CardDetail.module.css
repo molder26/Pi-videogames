@@ -36,13 +36,12 @@
 .detailGeneros,
 .detailPlataformas,
 .detailRating,
-.detailReleased
-{
+.detailReleased {
     color: var(--text-color);
 }
 
 .detailBtnBack {
-    margin: 30px 0px 0px 0px; 
+    margin: 30px 0px 0px 0px;
     width: 150px;
     color: #00ccff;
     text-decoration: none;
@@ -62,4 +61,9 @@
     cursor: pointer;
     transition-property: all;
     transition-duration: 0.5s;
+}
+
+.space {
+    margin-left: 10px;
+    padding: 9px 10px 10px 10px;
 }

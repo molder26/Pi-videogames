@@ -10,6 +10,7 @@ import {
     CREATE_VIDEOGAME,
     CHANGE_PAGE,
     ORIGEN_FILTER_VIDEOGAMES,
+    DELETE_VIDEOGAME,
 } from "../actions/index";
 
 const initialState = {
@@ -161,6 +162,18 @@ function rootReducer(state = initialState, action) {
             ...state,
             filteredVideoGames: state.allVideoGames,
             origenState: action.payload,
+        };
+    }
+    if (action.type === DELETE_VIDEOGAME) {
+        const filtered = state.filteredVideoGames.filter(
+            (game) => game.id !== action.payload
+        );
+
+        return {
+            ...state,
+            filteredVideoGames: filtered.length > 0 ? filtered : "No games",
+            allVideoGames: state.allVideoGames.filter((game) => game.id !== action.payload
+            ),
         };
     }
 

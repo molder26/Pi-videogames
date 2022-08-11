@@ -4,13 +4,13 @@
     height: 50%;
     justify-content: center;
     align-self: center;
-    color: white;
+    color: var(--text-color);
     /* border: solid 2px white; */
 }
 
 .notFound .card {
     display: flex;
-    background-color: #253743;
+    background-color: var(--card-color);
     border-radius: 0.4rem;
     overflow: hidden;
     box-shadow: 0 3rem 6rem rgba(0, 0, 0, 0.1);
