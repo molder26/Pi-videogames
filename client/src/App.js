@@ -3,10 +3,9 @@ import Welcome from "./components/welcome/Welcome";
 import Home from "./components/home/Home";
 import CardDetail from "./components/cardDetail/CardDetail";
 import CreateVideoGame from "./components/createVideoGame/CreateVideoGame";
+import NotFound from "./components/notFound/NotFound";
 
 import "./App.css";
-import Error404 from "./components/error404/Error404";
-import NotFound from "./components/notFound/NotFound";
 
 function App() {
     return (
