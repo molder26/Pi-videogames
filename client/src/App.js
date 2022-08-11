@@ -6,6 +6,7 @@ import CreateVideoGame from "./components/createVideoGame/CreateVideoGame";
 
 import "./App.css";
 import Error404 from "./components/error404/Error404";
+import NotFound from "./components/notFound/NotFound";
 
 function App() {
     return (
@@ -15,7 +16,7 @@ function App() {
                 <Route path="/home" component={Home}></Route>
                 <Route path="/detail/:id" component={CardDetail}></Route>
                 <Route path="/newgame" component={CreateVideoGame}></Route>
-                <Route path="*" component={Error404}></Route>
+                <Route path="*" component={() => (<NotFound msg="Error 404 - Pagina no existe!"/>)}></Route>
             </Switch>
         </BrowserRouter>
     );
