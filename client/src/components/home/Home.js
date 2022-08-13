@@ -13,6 +13,7 @@ export default function Home() {
     const dispatch = useDispatch();
     const { filteredVideoGames, allVideoGames, page:pagina } = useSelector((state) => state);
     
+
     const itemsPorPagina = 15;
     const offset = pagina * itemsPorPagina;
     const limit = offset + itemsPorPagina;

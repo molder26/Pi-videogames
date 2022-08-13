@@ -30,8 +30,6 @@ exports.updateVideoGame = async (req, res) => {
         }
         await game.setGenres(genresGame);
 
-        
-
         return res.status(200).json(game);
     } catch (error) {
         return res.status(404).json(error);
