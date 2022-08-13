@@ -19,7 +19,7 @@ exports.updateVideoGame = async (req, res) => {
         game.description = description;
         game.released = released;
         game.rating = rating;
-        game.image = image;
+        game.img = image;
         game.platforms = platformString;
 
         await game.save();
@@ -29,6 +29,13 @@ exports.updateVideoGame = async (req, res) => {
             genresGame.push(await Genre.findOne({ where: { name: g } }));
         }
         await game.setGenres(genresGame);
+
+        game = {
+            ...game.dataValues,
+            genres: genres
+                .map((g) => g)
+                .join(", "),
+        };
 
         return res.status(200).json(game);
     } catch (error) {
