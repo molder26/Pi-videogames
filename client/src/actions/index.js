@@ -1,4 +1,8 @@
 import axios from "axios";
+import dotenv from "dotenv";
+dotenv.config();
+
+const baseURL = process.env.REACT_APP_API || "http://localhost:3001";
 
 export const GET_VIDEOGAMES = "GET_VIDEOGAMES";
 export const GET_DETAIL_VIDEOGAME = "GET_DETAIL_VIDEOGAME";
@@ -77,7 +81,7 @@ export function emptyFilteredVideoGames() {
 
 export function createVideogame(obj) {
     return (dispatch) =>
-        fetch("/videogames", {
+        fetch(`${baseURL}/videogames`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
