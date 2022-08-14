@@ -16,7 +16,7 @@ export const DELETE_VIDEOGAME = "DELETE_VIDEOGAME";
 export function getVideoGames() {
     return function (dispatch) {
         return axios
-            .get(`http://localhost:3001/videogames`)
+            .get(`/videogames`)
             .then(({ data }) => {
                 dispatch({ type: GET_VIDEOGAMES, payload: data });
             });
@@ -26,7 +26,7 @@ export function getVideoGames() {
 export function getDetailVideoGame(id) {
     return function (dispatch) {
         return axios
-            .get(`http://localhost:3001/videogame/${id}`)
+            .get(`/videogame/${id}`)
             .then(({ data }) => {
                 dispatch({ type: GET_DETAIL_VIDEOGAME, payload: data });
             });
@@ -41,7 +41,7 @@ export function emptyDetailVideoGame() {
 
 export function getGenres() {
     return function (dispatch) {
-        return axios.get(`http://localhost:3001/genres`).then(({ data }) => {
+        return axios.get(`/genres`).then(({ data }) => {
             dispatch({ type: GET_GENRES, payload: data });
         });
     };
@@ -62,7 +62,7 @@ export function filterVideoGames(filter) {
 export function searchVideoGames(name) {
     return function (dispatch) {
         return axios
-            .get(`http://localhost:3001/videogames?name=${name}`)
+            .get(`/videogames?name=${name}`)
             .then(({ data }) => {
                 dispatch({ type: SEARCH_VIDEOGAMES, payload: data });
             });
@@ -77,7 +77,7 @@ export function emptyFilteredVideoGames() {
 
 export function createVideogame(obj) {
     return (dispatch) =>
-        fetch("http://localhost:3001/videogames", {
+        fetch("/videogames", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -106,7 +106,7 @@ export function origenFilterVideoGames(origen) {
 export function deleteVideoGame(id) {
     return function (dispatch) {
         return axios
-            .delete(`http://localhost:3001/videogame/${id}`)
+            .delete(`/videogame/${id}`)
             .then(({ data }) => {
                 dispatch({ type: DELETE_VIDEOGAME, payload: data });
             });
