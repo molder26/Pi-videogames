@@ -5,6 +5,7 @@ import { MdDarkMode } from "react-icons/md";
 import { Link } from "react-router-dom";
 import {
     changePage,
+    filterPlataform,
     filterVideoGames,
     orderVideoGames,
     origenFilterVideoGames,
@@ -14,36 +15,43 @@ import styles from "./NavBar.module.css";
 
 export default function NavBar() {
     const dispatch = useDispatch();
-    const { allGenres, filterState, origenState, orderState } =
+    const { allGenres, filterState, origenState, orderState, platformState } =
         useSelector((state) => state);
     const [orderBy, setOrderBy] = useState(orderState);
     const [filterBy, setFilterBy] = useState(filterState);
     const [origenBy, setOrigenBy] = useState(origenState);
+    const [platformBy, setPlataformBy] = useState(platformState);
 
     let themeSaved = window.localStorage.getItem("theme");
     const [theme, setTheme] = useState(themeSaved || "dark");
 
-    const setSelects = (order = "", filter = "", origen = "") => {
+    const setSelects = (order = "", filter = "", origen = "", platform = "") => {
         setOrderBy(order);
         setFilterBy(filter);
+        setPlataformBy(platform)
         setOrigenBy(origen);
         dispatch(origenFilterVideoGames(origen));
+        dispatch(filterPlataform(platform));
         dispatch(filterVideoGames(filter));
         dispatch(orderVideoGames(order));
         dispatch(changePage(0));
     };
 
     const handleChangeOrder = (e) => {
-        setSelects(e.target.value, filterBy, origenBy);
+        setSelects(e.target.value, filterBy, origenBy, platformBy);
     };
 
     const handleChangeFilter = (e) => {
-        setSelects(orderBy, e.target.value, origenBy);
+        setSelects(orderBy, e.target.value, origenBy, platformBy);
     };
 
     const handleChangeOrigen = (e) => {
-        setSelects(orderBy, filterBy, e.target.value);
+        setSelects(orderBy, filterBy, e.target.value, platformBy);
     };
+
+    const handleChangePlataform = (e) => {
+        setSelects(orderBy, filterBy, origenBy, e.target.value);
+    }
 
     const handleCleanFilters = () => {
         setSelects();
@@ -87,6 +95,23 @@ export default function NavBar() {
                 <option value="abc-desc">Z-A</option>
                 <option value="rating-asc">Rating +</option>
                 <option value="rating-desc">Rating -</option>
+            </select>
+
+            <select
+                className={styles.select}
+                value={platformBy}
+                name="plataformas"
+                id="plataformas-select"
+                onChange={handleChangePlataform}
+            >
+                <option value="">-- Platform --</option>
+                <option value="android">Android</option>
+                <option value="apple macintosh">Apple Macintosh</option>
+                <option value="linux">Linux</option>
+                <option value="nintendo">Nintendo</option>
+                <option value="pc">PC</option>
+                <option value="playstation">PlayStation</option>
+                <option value="xbox">Xbox</option>
             </select>
 
             <select

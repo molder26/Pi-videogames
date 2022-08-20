@@ -81,8 +81,8 @@
 }
 
 .select {
-    margin-left: 50px;
-    padding: 0px 40px 0px 10px;
+    margin-left: 20px;
+    padding: 0px 30px 0px 10px;
     height: 40px;
     margin-top: 20px;
     border: 2px solid var(--text-color);

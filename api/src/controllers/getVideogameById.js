@@ -63,6 +63,10 @@ exports.getVideogameById = async (req, res) => {
                     .join(", "),
             };
 
+            // ['xbox', 'platform']
+
+            // = 'xbox, platform'
+
             return res.status(200).json(formatedDetailVideoGame);
         }
     } catch (error) {

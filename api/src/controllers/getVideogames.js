@@ -25,6 +25,7 @@ exports.getVideogames = async (req, res) => {
                     id: g.dataValues.id,
                     name: g.dataValues.name,
                     img: g.dataValues.img,
+                    platforms: g.platforms,
                     genres: g.dataValues.genres
                         .map((g) => g.name)
                         .filter((p) => p != null)
@@ -41,6 +42,12 @@ exports.getVideogames = async (req, res) => {
                     id: game.id,
                     name: game.name,
                     img: game.background_image,
+                    platforms:
+                        game.parent_platforms &&
+                        game.parent_platforms
+                            .map((p) => p.platform.name)
+                            .filter((p) => p != null)
+                            .join(", "),
                     genres:
                         game.genres &&
                         game.genres
@@ -71,6 +78,12 @@ exports.getVideogames = async (req, res) => {
                     id: game.id,
                     name: game.name,
                     img: game.background_image,
+                    platforms:
+                        game.parent_platforms &&
+                        game.parent_platforms
+                            .map((p) => p.platform.name)
+                            .filter((p) => p != null)
+                            .join(", "),
                     genres:
                         game.genres &&
                         game.genres
@@ -88,6 +101,7 @@ exports.getVideogames = async (req, res) => {
             id: g.dataValues.id,
             name: g.dataValues.name,
             img: g.dataValues.img,
+            platforms: g.platforms,
             genres: g.dataValues.genres
                 .map((g) => g.name)
                 .filter((p) => p != null)

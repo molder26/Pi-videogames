@@ -11,6 +11,7 @@ import {
     CHANGE_PAGE,
     ORIGEN_FILTER_VIDEOGAMES,
     DELETE_VIDEOGAME,
+    FILTER_PLATAFORM,
 } from "../actions/index";
 
 const initialState = {
@@ -22,6 +23,7 @@ const initialState = {
     orderState: "",
     filterState: "",
     origenState: "",
+    platformState: "",
 };
 
 function rootReducer(state = initialState, action) {
@@ -107,6 +109,22 @@ function rootReducer(state = initialState, action) {
             filterState: action.payload,
         };
     }
+
+    if (action.type === FILTER_PLATAFORM) {
+        console.log(action.payload);
+        const filtered =
+            typeof state.allVideoGames !== "string"
+                ? state.allVideoGames.filter((game) =>
+                      game.platforms.toLowerCase().includes(action.payload)
+                  )
+                : [];
+        return {
+            ...state,
+            filteredVideoGames: filtered.length > 0 ? filtered : "No games",
+            platformState: action.payload,
+        };
+    }
+
     if (action.type === SEARCH_VIDEOGAMES) {
         const filtered = action.payload;
         return {
@@ -172,7 +190,8 @@ function rootReducer(state = initialState, action) {
         return {
             ...state,
             filteredVideoGames: filtered.length > 0 ? filtered : "No games",
-            allVideoGames: state.allVideoGames.filter((game) => game.id !== action.payload
+            allVideoGames: state.allVideoGames.filter(
+                (game) => game.id !== action.payload
             ),
         };
     }

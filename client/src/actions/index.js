@@ -16,6 +16,7 @@ export const CREATE_VIDEOGAME = "CREATE_VIDEOGAME";
 export const CHANGE_PAGE = "CHANGE_PAGE";
 export const ORIGEN_FILTER_VIDEOGAMES = "ORIGEN_FILTER_VIDEOGAMES";
 export const DELETE_VIDEOGAME = "DELETE_VIDEOGAME";
+export const FILTER_PLATAFORM = "FILTER_PLATAFORM";
 
 export function getVideoGames() {
     return function (dispatch) {
@@ -114,5 +115,11 @@ export function deleteVideoGame(id) {
             .then(({ data }) => {
                 dispatch({ type: DELETE_VIDEOGAME, payload: data });
             });
+    };
+}
+
+export function filterPlataform(plataforma) {
+    return function (dispatch) {
+        dispatch({ type: FILTER_PLATAFORM, payload: plataforma });
     };
 }
