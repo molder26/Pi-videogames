@@ -111,10 +111,9 @@ function rootReducer(state = initialState, action) {
     }
 
     if (action.type === FILTER_PLATAFORM) {
-        console.log(action.payload);
         const filtered =
-            typeof state.allVideoGames !== "string"
-                ? state.allVideoGames.filter((game) =>
+            typeof state.filteredVideoGames !== "string"
+                ? state.filteredVideoGames.filter((game) =>
                       game.platforms.toLowerCase().includes(action.payload)
                   )
                 : [];
@@ -139,6 +138,7 @@ function rootReducer(state = initialState, action) {
             filterState: "",
             orderState: "",
             origenState: "",
+            platformState: "",
             page: 0,
         };
     }
