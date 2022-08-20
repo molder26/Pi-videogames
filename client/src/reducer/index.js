@@ -54,6 +54,13 @@ function rootReducer(state = initialState, action) {
         };
     }
     if (action.type === ORDER_VIDEOGAMES) {
+        if (typeof state.filteredVideoGames === "string") {
+            return {
+                ...state,
+                filteredVideoGames: state.filteredVideoGames,
+                orderState: action.payload,
+            };
+        }
         if (action.payload === "abc-asc") {
             return {
                 ...state,
@@ -90,11 +97,6 @@ function rootReducer(state = initialState, action) {
                 orderState: action.payload,
             };
         }
-        return {
-            ...state,
-            filteredVideoGames: state.filteredVideoGames,
-            orderState: action.payload,
-        };
     }
     if (action.type === FILTER_VIDEOGAMES) {
         const filtered =
