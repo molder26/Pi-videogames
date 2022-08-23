@@ -5,7 +5,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: flex-start;
-    height: 70px;
+    height: 4rem;
 }
 
 .navbar .link {
@@ -153,4 +153,32 @@
     cursor: pointer;
     transition-property: all;
     transition-duration: 0.5s;
+}
+
+@media (max-width: 1600px) {
+    .select {
+        padding: 0px 0px 0px 0px;
+        font-size: 16px;
+        margin-left: 0.3rem;
+    }
+    .btnLightDark {
+        margin-left: 0.5rem;
+    }
+    .navbar .title {
+        font-size: 40px;
+    }
+    .navbar .optionBar {
+        font-size: 20px;
+        margin: 20px 10px 0px 10px;
+        /* white-space: nowrap;
+  	    overflow: hidden;
+  	    text-overflow: ellipsis; */
+    }
+}
+
+@media (max-width: 1100px) {
+    .navbar .title {
+        font-size: 1px;
+        visibility: hidden;
+    }
 }

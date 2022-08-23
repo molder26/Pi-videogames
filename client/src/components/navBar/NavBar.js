@@ -90,7 +90,7 @@ export default function NavBar() {
                 id="order-select"
                 onChange={handleChangeOrder}
             >
-                <option value="">-- Order By --</option>
+                <option value="">-- Order --</option>
                 <option value="abc-asc">A-Z</option>
                 <option value="abc-desc">Z-A</option>
                 <option value="rating-asc">Rating +</option>

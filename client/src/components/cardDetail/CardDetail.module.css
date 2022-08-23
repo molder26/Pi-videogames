@@ -67,3 +67,15 @@
     margin-left: 10px;
     padding: 9px 10px 10px 10px;
 }
+
+@media (max-width: 1350px) {
+    .detailImg {
+        width: 40%;
+    }
+}
+
+@media (max-width: 1150px) {
+    .detailImg {
+        width: 30%;
+    }
+}
